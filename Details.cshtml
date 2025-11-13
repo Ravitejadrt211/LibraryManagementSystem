@@ -1,33 +1,19 @@
-﻿@model LibraryManagementSystem.Models.BookDto
+﻿@model LibraryManagementSystem.Models.BorrowRecordDto
 @{
-    ViewData["Title"] = "Book Details";
+    ViewData["Title"] = "Borrow Record Details";
 }
+
 <div class="container mt-4">
-    <div class="card shadow-lg border-0">
-        <div class="card-header bg-info text-white">
-            <h3>Book Details</h3>
-        </div>
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-3">Title</dt>
-                <dd class="col-sm-9">@Model.Title</dd>
+    <h2 class="text-primary">📋 Borrow Record Details</h2>
 
-                <dt class="col-sm-3">Author</dt>
-                <dd class="col-sm-9">@Model.Author</dd>
+    <table class="table table-bordered mt-3">
+        <tr><th>Book</th><td>@Model.BookTitle</td></tr>
+        <tr><th>Borrower</th><td>@Model.BorrowerName</td></tr>
+        <tr><th>Borrow Date</th><td>@Model.BorrowDate.ToShortDateString()</td></tr>
+        <tr><th>Due Date</th><td>@Model.DueDate.ToShortDateString()</td></tr>
+        <tr><th>Return Date</th><td>@(Model.ReturnDate?.ToShortDateString() ?? "-")</td></tr>
+        <tr><th>Status</th><td>@(Model.IsOverdue ? "Overdue" : Model.ReturnDate == null ? "Active" : "Returned")</td></tr>
+    </table>
 
-                <dt class="col-sm-3">Genre</dt>
-                <dd class="col-sm-9">@Model.Genre</dd>
-
-                <dt class="col-sm-3">ISBN</dt>
-                <dd class="col-sm-9">@Model.ISBN</dd>
-
-                <dt class="col-sm-3">Quantity</dt>
-                <dd class="col-sm-9">@Model.Quantity</dd>
-            </dl>
-        </div>
-        <div class="card-footer text-end">
-            <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-warning">Edit</a>
-            <a asp-action="Index" class="btn btn-secondary">Back</a>
-        </div>
-    </div>
+    <a asp-action="Index" class="btn btn-secondary">⬅ Back</a>
 </div>

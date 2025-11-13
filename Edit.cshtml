@@ -1,44 +1,38 @@
-﻿@model LibraryManagementSystem.Models.BookDto
+﻿@model LibraryManagementSystem.Models.BorrowerDto
 @{
-    ViewData["Title"] = "Edit Book";
+    ViewData["Title"] = "Edit Borrower";
 }
-<div class="container mt-4">
-    <div class="card shadow-lg border-0">
-        <div class="card-header bg-warning text-dark">
-            <h3>Edit Book Information</h3>
-        </div>
-        <div class="card-body">
-            <form asp-action="Edit" method="post">
-                <input type="hidden" asp-for="BookId" />
 
-                <div class="mb-3">
-                    <label asp-for="Title" class="form-label"></label>
-                    <input asp-for="Title" class="form-control border-warning" />
-                </div>
+<h2 class="text-warning mb-4">Edit Borrower</h2>
 
-                <div class="mb-3">
-                    <label asp-for="Author" class="form-label"></label>
-                    <input asp-for="Author" class="form-control border-warning" />
-                </div>
+<form asp-action="Edit" method="post" class="card p-4 shadow-sm">
+    <input type="hidden" asp-for="BorrowerId" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <div class="mb-3">
-                    <label asp-for="ISBN" class="form-label"></label>
-                    <input asp-for="ISBN" class="form-control border-warning" />
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Genre" class="form-label"></label>
-                    <input asp-for="Genre" class="form-control border-warning" />
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Quantity" class="form-label"></label>
-                    <input asp-for="Quantity" type="number" class="form-control border-warning" />
-                </div>
-
-                <button type="submit" class="btn btn-warning">Update</button>
-                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-            </form>
-        </div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-</div>
+
+    <div class="mb-3">
+        <label asp-for="MembershipId" class="form-label"></label>
+        <input asp-for="MembershipId" class="form-control" />
+        <span asp-validation-for="MembershipId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
