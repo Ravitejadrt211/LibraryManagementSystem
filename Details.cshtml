@@ -1,0 +1,33 @@
+﻿@model LibraryManagementSystem.Models.BookDto
+@{
+    ViewData["Title"] = "Book Details";
+}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-info text-white">
+            <h3>Book Details</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Title</dt>
+                <dd class="col-sm-9">@Model.Title</dd>
+
+                <dt class="col-sm-3">Author</dt>
+                <dd class="col-sm-9">@Model.Author</dd>
+
+                <dt class="col-sm-3">Genre</dt>
+                <dd class="col-sm-9">@Model.Genre</dd>
+
+                <dt class="col-sm-3">ISBN</dt>
+                <dd class="col-sm-9">@Model.ISBN</dd>
+
+                <dt class="col-sm-3">Quantity</dt>
+                <dd class="col-sm-9">@Model.Quantity</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-end">
+            <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-warning">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</div>

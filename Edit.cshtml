@@ -1,0 +1,44 @@
+﻿@model LibraryManagementSystem.Models.BookDto
+@{
+    ViewData["Title"] = "Edit Book";
+}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-warning text-dark">
+            <h3>Edit Book Information</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="BookId" />
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control border-warning" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Author" class="form-label"></label>
+                    <input asp-for="Author" class="form-control border-warning" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ISBN" class="form-label"></label>
+                    <input asp-for="ISBN" class="form-control border-warning" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Genre" class="form-label"></label>
+                    <input asp-for="Genre" class="form-control border-warning" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Quantity" class="form-label"></label>
+                    <input asp-for="Quantity" type="number" class="form-control border-warning" />
+                </div>
+
+                <button type="submit" class="btn btn-warning">Update</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
