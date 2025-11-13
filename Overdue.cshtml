@@ -1,0 +1,44 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.BorrowRecordDto>
+@{
+    ViewData["Title"] = "Overdue Borrowed Books";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">⏰ Overdue Borrowed Books</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-success mt-3">Great! No overdue books right now.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-danger">
+                <tr>
+                    <th>Book</th>
+                    <th>Borrower</th>
+                    <th>Borrow Date</th>
+                    <th>Due Date</th>
+                    <th>Days Late</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    var daysLate = (DateTime.Now - record.DueDate).Days;
+                    <tr>
+                        <td>@record.BookTitle</td>
+                        <td>@record.BorrowerName</td>
+                        <td>@record.BorrowDate.ToShortDateString()</td>
+                        <td>@record.DueDate.ToShortDateString()</td>
+                        <td>@daysLate days</td>
+                        <td>
+                            <a asp-action="Return" asp-route-id="@record.BorrowRecordId" class="btn btn-success btn-sm">Return</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

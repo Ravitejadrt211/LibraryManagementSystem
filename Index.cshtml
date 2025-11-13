@@ -1,0 +1,54 @@
+﻿@model LibraryManagementSystem.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">📚 Library Dashboard</h2>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card border-primary shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary">Total Books</h5>
+                    <h2>@Model.TotalBooks</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-success shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-success">Borrowers</h5>
+                    <h2>@Model.TotalBorrowers</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-warning">Active Borrows</h5>
+                    <h2>@Model.ActiveBorrows</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-danger">Overdue Books</h5>
+                    <h2>@Model.OverdueBooks</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="text-center">
+        <a asp-controller="Book" asp-action="Index" class="btn btn-primary me-2">📖 Manage Books</a>
+        <a asp-controller="Borrower" asp-action="Index" class="btn btn-success me-2">👤 Manage Borrowers</a>
+        <a asp-controller="BorrowRecord" asp-action="Index" class="btn btn-warning">📘 Borrow Records</a>
+    </div>
+</div>

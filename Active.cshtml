@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.BorrowRecordDto>
+@{
+    ViewData["Title"] = "Active Borrowed Books";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">📘 Active Borrowed Books</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info mt-3">No active borrow records found.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Book</th>
+                    <th>Borrower</th>
+                    <th>Borrow Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    <tr>
+                        <td>@record.BookTitle</td>
+                        <td>@record.BorrowerName</td>
+                        <td>@record.BorrowDate.ToShortDateString()</td>
+                        <td>@record.DueDate.ToShortDateString()</td>
+                        <td>
+                            @if (record.IsOverdue)
+                            {
+                                <span class="badge bg-danger">Overdue</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Return" asp-route-id="@record.BorrowRecordId" class="btn btn-success btn-sm">Return</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

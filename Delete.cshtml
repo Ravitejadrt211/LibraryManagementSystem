@@ -1,0 +1,14 @@
+﻿@model LibraryManagementSystem.Models.BorrowRecordDto
+
+<h2 class="text-danger">Delete Borrow Record</h2>
+
+<div>
+    <p>Are you sure you want to delete the borrow record for <strong>@Model.BookTitle</strong> by <strong>@Model.BorrowerName</strong>?</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="BorrowRecordId" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,19 @@
+﻿@model LibraryManagementSystem.Models.BorrowRecordDto
+@{
+    ViewData["Title"] = "Borrow Record Details";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">📋 Borrow Record Details</h2>
+
+    <table class="table table-bordered mt-3">
+        <tr><th>Book</th><td>@Model.BookTitle</td></tr>
+        <tr><th>Borrower</th><td>@Model.BorrowerName</td></tr>
+        <tr><th>Borrow Date</th><td>@Model.BorrowDate.ToShortDateString()</td></tr>
+        <tr><th>Due Date</th><td>@Model.DueDate.ToShortDateString()</td></tr>
+        <tr><th>Return Date</th><td>@(Model.ReturnDate?.ToShortDateString() ?? "-")</td></tr>
+        <tr><th>Status</th><td>@(Model.IsOverdue ? "Overdue" : Model.ReturnDate == null ? "Active" : "Returned")</td></tr>
+    </table>
+
+    <a asp-action="Index" class="btn btn-secondary">⬅ Back</a>
+</div>

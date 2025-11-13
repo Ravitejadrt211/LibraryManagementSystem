@@ -1,0 +1,36 @@
+﻿@model LibraryManagementSystem.Models.BorrowRecordDto
+@{
+    ViewData["Title"] = "Return Book";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">↩ Return Book</h2>
+
+    <div class="card mt-3 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title text-dark">@Model.BookTitle</h5>
+            <p><strong>Borrower:</strong> @Model.BorrowerName</p>
+            <p><strong>Borrowed On:</strong> @Model.BorrowDate.ToShortDateString()</p>
+            <p><strong>Due Date:</strong> @Model.DueDate.ToShortDateString()</p>
+
+            @if (Model.IsOverdue)
+            {
+                <p><strong>Status:</strong> <span class="badge bg-danger">Overdue</span></p>
+            }
+            else if (Model.ReturnDate != null)
+            {
+                <p><strong>Status:</strong> <span class="badge bg-success">Returned</span></p>
+            }
+            else
+            {
+                <p><strong>Status:</strong> <span class="badge bg-warning text-dark">Active</span></p>
+            }
+        </div>
+    </div>
+
+    <form asp-action="ReturnConfirmed" method="post" class="mt-3">
+        <input type="hidden" name="borrowRecordId" value="@Model.BorrowRecordId" />
+        <button type="submit" class="btn btn-success">✅ Confirm Return</button>
+        <a asp-action="Index" class="btn btn-secondary">⬅ Back</a>
+    </form>
+</div>

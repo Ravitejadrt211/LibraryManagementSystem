@@ -1,0 +1,55 @@
+﻿@model LibraryManagementSystem.Models.BorrowRecordDto
+@{
+    ViewData["Title"] = "Borrow a Book";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">📖 Borrow a Book</h2>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <form asp-action="Borrow" method="post" class="mt-3">
+        <div class="card shadow-sm p-4">
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Borrower</label>
+                <select asp-for="BorrowerId" asp-items="ViewBag.Borrowers" class="form-select" required>
+                    <option value="">-- Select Borrower --</option>
+                </select>
+                <span asp-validation-for="BorrowerId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Book</label>
+                <select asp-for="BookId" asp-items="ViewBag.Books" class="form-select" required>
+                    <option value="">-- Select Book --</option>
+                </select>
+                <span asp-validation-for="BookId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="BorrowDate" class="form-label fw-bold">Borrow Date</label>
+                <input asp-for="BorrowDate" type="date" class="form-control" required />
+                <span asp-validation-for="BorrowDate" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DueDate" class="form-label fw-bold">Due Date</label>
+                <input asp-for="DueDate" type="date" class="form-control" required />
+                <span asp-validation-for="DueDate" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">💾 Borrow Book</button>
+                <a asp-action="Index" class="btn btn-secondary">⬅ Back</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
